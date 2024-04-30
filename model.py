@@ -32,15 +32,5 @@ rmse = np.sqrt(mean_squared_error(y_test, preds))
 Lr=LinearRegression()
 Lr.fit(X,y)
 Lr_pred= Lr.predict(X_test)
-
-#Decisiontree
-param_grid = {'max_depth':[6,7,8,],
-              'min_samples_split': [2,4,8,12],
-              'min_samples_leaf': [2,3,6,7,8]}
-tree_grid = GridSearchCV(DecisionTreeRegressor(), param_grid=param_grid, cv=5)
-tree_grid.fit(X, y)
-tree_grid.best_params_
-y_pred = tree_grid.predict(model)
-
 with open("xgb_model.pickle", "wb") as f:
     pl.dump(rmse, f)
