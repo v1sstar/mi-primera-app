@@ -13,7 +13,7 @@ from catboost import CatBoostClassifier, CatBoostRegressor
 from sklearn.linear_model import LinearRegression,Lasso,Ridge,ElasticNet
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.metrics import mean_squared_error
-model= pd.read_csv("C:\Users\atoma\Documents\python_word\mi primera app\hprice.csv")
+model= pd.read_csv("C:\\Users\\atoma\\Documents\\python_word\\mi primera app\\hprice.csv")
 y=model["price"]
 X=model.drop(columns="price")
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)

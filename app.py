@@ -3,7 +3,7 @@ import pandas as pd
 import pickle as pl
 import numpy as np
 st.title("Predicción del valor de un inmueble")
-data = pd.read_csv("C:\Users\atoma\Documents\python_word\mi primera app\hprice.csv")
+data = pd.read_csv("C:\\Users\\atoma\\Documents\\python_word\\mi primera app\\hprice.csv")
 with open("xgb_model.pickle", "rb") as f:
     xgb_rmse = pl.load(f)
 # Widgets para la entrada de datos
