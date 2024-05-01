@@ -33,10 +33,5 @@ rmse = np.sqrt(mean_squared_error(y_test, preds))
 print("RMSE:", rmse)
 
 
-#LinearRegression
-Lr=LinearRegression()
-Lr.fit(X,y)
-Lr_pred= Lr.predict(X_test)
-
-with open("rmse.pickle", "wb") as f:
-    pl.dump(rmse, f)
+with open("gs_xgb.pickle", "wb") as f:
+    pl.dump(gs_xgb, f)
