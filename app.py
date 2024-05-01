@@ -4,8 +4,8 @@ import pickle as pl
 import numpy as np
 st.title("Predicción del valor de un inmueble")
 data = pd.read_csv("hprice.csv")
-with open("preds.pickle", "rb") as f:
-    preds = pl.load(f)
+with open("gs_xgb.pickle", "rb") as f:
+    gs_xgb = pl.load(f)
 # Widgets para la entrada de datos
 lotsize = st.slider("Tamaño del lote (lotsize)", float(data["lotsize"].min()), float(data["lotsize"].max()), float(data["lotsize"].mean()))
 assess = st.slider("Evaluación del vecindario (assess)", float(data["assess"].min()), float(data["assess"].max()), float(data["assess"].mean()))
@@ -22,5 +22,5 @@ print("bdrms:", bdrms)
 
 colonial_binary = 1 if colonial == "Sí" else 0
 valores=np.array([[lotsize,assess,colonial_binary,sqrft,bdrms]])
-p=preds.predict([[lotsize,assess,colonial_binary,sqrft,bdrms]])
+p=gs_xgb.predict([[lotsize,assess,colonial_binary,sqrft,bdrms]])
 st.write(p)
