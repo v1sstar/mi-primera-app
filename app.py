@@ -22,4 +22,4 @@ print("bdrms:", bdrms)
 colonial_binary = 1 if colonial == "Sí" else 0
 valores=np.array([[lotsize,assess,colonial_binary,sqrft,bdrms]])
 p=Lr.predict([[lotsize,assess,colonial_binary,sqrft,bdrms]])
-st.write(p)
+st.write(f"El valor predicho del inmueble es: ${p:.2f}")
