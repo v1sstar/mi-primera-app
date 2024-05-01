@@ -31,6 +31,16 @@ preds = gs_xgb.predict(X_test)
 rmse = np.sqrt(mean_squared_error(y_test, preds))
 print("RMSE:", rmse)
 
+#regression tree 
+param_gridtree = {'max_depth': [3,8],
+              'min_samples_split': [4,8,16],
+              'min_samples_leaf': [1,2,3]}
+rf_grid= GridSearchCV(DecisionTreeRegressor(),param_gridtree,scoring="neg_mean_squared_error", cv=3)
+rf_grid.fit(X_train, y_train)
+rf_grid.best_params_
+y_pred = rf_grid.predict(X_test)
+rmse_tree= np.sqrt(mean_squared_error(y_test, preds))
+print("RMSE:", rmse_tree)
 
-with open("gs_xgb.pickle", "wb") as f:
-    pl.dump(gs_xgb, f)
+with open("rf_grid.pickle", "wb") as f:
+    pl.dump(rf_grid, f)
