@@ -11,7 +11,7 @@ lotsize = st.slider("Tamaño del lote (lotsize)", float(data["lotsize"].min()), 
 assess = st.slider("Evaluación del vecindario (assess)", float(data["assess"].min()), float(data["assess"].max()), float(data["assess"].mean()))
 colonial = st.radio("¿Es colonial?", ("Sí", "No"))
 sqrft = st.slider("Pies cuadrados (sqrft)", float(data["sqrft"].min()), float(data["sqrft"].max()), float(data["sqrft"].mean()))
-bdrms = st.slider("Pies cuadrados (bdrms)", float(data["bdrms"].min()), float(data["bdrms"].max()), float(data["bdrms"].mean()))
+bdrms = st.slider("Numero de habitaciones (bdrms)", float(data["bdrms"].min()), float(data["bdrms"].max()), float(data["bdrms"].mean()))
 
 print("lotsize:", lotsize)
 print("assess:", assess)
@@ -20,5 +20,5 @@ print("sqrft:", sqrft)
 print("bdrms:", bdrms)
 
 colonial_binary = 1 if colonial == "Sí" else 0
-prediction = gs_xgb.preds(np.array([[lotsize, assess, colonial_binary, sqrft,bdrms]]))[0]
-st.write(f"El valor predicho del inmueble es: ${prediction:.2f}")
+preds = gs_xgb.preds(np.array([[lotsize, assess, colonial_binary, sqrft,bdrms]]))[0]
+st.write(f"El valor predicho del inmueble es: ${preds:.2f}")
