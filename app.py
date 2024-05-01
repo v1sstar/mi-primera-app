@@ -10,8 +10,9 @@ with open("gs_xgb.pickle", "rb") as f:
 lotsize = st.slider("Tamaño del lote (lotsize)", float(data["lotsize"].min()), float(data["lotsize"].max()), float(data["lotsize"].mean()))
 assess = st.slider("Evaluación del vecindario (assess)", float(data["assess"].min()), float(data["assess"].max()), float(data["assess"].mean()))
 colonial = st.radio("¿Es colonial?", ("Sí", "No"))
-sqrft = st.slider("Pies cuadrados (sqrft)", float(data["sqrft"].min()), float(data["sqrft"].max()), float(data["sqrft"].mean()))
-bdrms = st.slider("Numero de habitaciones (bdrms)", float(data["bdrms"].min()), float(data["bdrms"].max()), float(data["bdrms"].mean()))
+sqrft = st.slider("Pies cuadrados (sqrft)", int(data["sqrft"].min()), int(data["sqrft"].max()), int(data["sqrft"].mean()))
+bdrms = st.slider("Numero de habitaciones (bdrms)", int(data["bdrms"].min()), int(data["bdrms"].max()), int(data["bdrms"].mean()))
+
 
 print("lotsize:", lotsize)
 print("assess:", assess)

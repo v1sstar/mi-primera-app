@@ -14,7 +14,7 @@ from sklearn.linear_model import LinearRegression,Lasso,Ridge,ElasticNet
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.metrics import mean_squared_error
 model= pd.read_csv("hprice.csv")
-
+model.info()
 X = model[["lotsize", "assess","bdrms","colonial","sqrft"]]
 y=model["price"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
