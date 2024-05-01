@@ -20,5 +20,6 @@ print("sqrft:", sqrft)
 print("bdrms:", bdrms)
 
 colonial_binary = 1 if colonial == "Sí" else 0
-preds = gs_xgb.preds(np.array([[lotsize, assess, colonial_binary, sqrft,bdrms]]))[0]
-st.write(f"El valor predicho del inmueble es: ${preds:.2f}")
+valores=np.array([[lotsize,assess,colonial_binary,sqrft,bdrms]])
+p=gs_xgb.predict([[lotsize,assess,colonial_binary,sqrft,bdrms]])
+st.write(p)
