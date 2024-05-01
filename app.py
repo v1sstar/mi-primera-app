@@ -13,5 +13,5 @@ colonial = st.radio("¿Es colonial?", ("Sí", "No"))
 sqrft = st.slider("Pies cuadrados (sqrft)", float(data["sqrft"].min()), float(data["sqrft"].max()), float(data["sqrft"].mean()))
 
 colonial_binary = 1 if colonial == "Sí" else 0
-prediction = xgb_rmse.predict(np.array([[lotsize, asses, colonial_binary, sqrft]]))[0]
+prediction = xgb_rmse.predict(np.array([[lotsize, assess, colonial_binary, sqrft]]))[0]
 st.write(f"El valor predicho del inmueble es: ${prediction:.2f}")
