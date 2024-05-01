@@ -4,7 +4,7 @@ import pickle as pl
 import numpy as np
 st.title("Predicción del valor de un inmueble")
 data = pd.read_csv("hprice.csv")
-with open("xgb_model.pickle", "rb") as f:
+with open("gs_xgb.pickle", "rb") as f:
     gs_xgb = pl.load(f)
 # Widgets para la entrada de datos
 lotsize = st.slider("Tamaño del lote (lotsize)", float(data["lotsize"].min()), float(data["lotsize"].max()), float(data["lotsize"].mean()))
