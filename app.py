@@ -4,13 +4,14 @@ import pickle as pl
 import numpy as np
 st.title("Predicción del valor de un inmueble")
 data = pd.read_csv("hprice.csv")
-with open("xgb_model.pickle", "rb") as f:
+with open("rmse.pickle", "rb") as f:
     xgb_rmse = pl.load(f)
 # Widgets para la entrada de datos
-numero_habitaciones = st.selectbox("Número de habitaciones:", data["numero_habitaciones"].unique())
-metros_cuadrados = st.number_input("Metros cuadrados:", min_value=1)
-anio_construccion = st.number_input("Año de construcción:", min_value=1900)
-vars = np.array([[numero_habitaciones, metros_cuadrados, anio_construccion, ...]])
-# Predecir el precio usando los modelos
-xgb_prediction = xgb_rmse.predict(np.array([[numero_habitaciones, metros_cuadrados, anio_construccion, ...]]))[0]
-st.write("XGBoost Prediction:", xgb_prediction)
+lotsize = st.slider("Tamaño del lote (lotsize)", float(data["lotsize"].min()), float(data["lotsize"].max()), float(data["lotsize"].mean()))
+asses = st.slider("Evaluación del vecindario (asses)", float(data["asses"].min()), float(data["asses"].max()), float(data["asses"].mean()))
+colonial = st.radio("¿Es colonial?", ("Sí", "No"))
+sqrft = st.slider("Pies cuadrados (sqrft)", float(data["sqrft"].min()), float(data["sqrft"].max()), float(data["sqrft"].mean()))
+
+colonial_binary = 1 if colonial == "Sí" else 0
+prediction = xgb_rmse.predict(np.array([[lotsize, asses, colonial_binary, sqrft]]))[0]
+st.write(f"El valor predicho del inmueble es: ${prediction:.2f}")

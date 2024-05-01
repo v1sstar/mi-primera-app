@@ -14,8 +14,9 @@ from sklearn.linear_model import LinearRegression,Lasso,Ridge,ElasticNet
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.metrics import mean_squared_error
 model= pd.read_csv("hprice.csv")
+
+X = model[["lotsize", "assess","bdrms","colonial","sqrft"]]
 y=model["price"]
-X=model.drop(columns="price")
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 #XGBoost
@@ -25,12 +26,17 @@ param_grid = {"eta":[1],
               "alpha":[1,2,3,4,5,6,7,8,9]}
 gs_xgb = GridSearchCV(XGBRegressor(), scoring='neg_mean_squared_error', param_grid=param_grid, cv=5)
 gs_xgb.fit(X_train, y_train)
+best_params = gs_xgb.best_params_
+print("Mejores parámetros:", best_params)
 preds = gs_xgb.predict(X_test)
 rmse = np.sqrt(mean_squared_error(y_test, preds))
+print("RMSE:", rmse)
+
 
 #LinearRegression
 Lr=LinearRegression()
 Lr.fit(X,y)
 Lr_pred= Lr.predict(X_test)
-with open("xgb_model.pickle", "wb") as f:
+
+with open("rmse.pickle", "wb") as f:
     pl.dump(rmse, f)
