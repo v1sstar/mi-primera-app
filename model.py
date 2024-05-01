@@ -39,8 +39,16 @@ rf_grid= GridSearchCV(DecisionTreeRegressor(),param_gridtree,scoring="neg_mean_s
 rf_grid.fit(X_train, y_train)
 rf_grid.best_params_
 y_pred = rf_grid.predict(X_test)
-rmse_tree= np.sqrt(mean_squared_error(y_test, preds))
+rmse_tree= np.sqrt(mean_squared_error(y_test, y_pred))
 print("RMSE:", rmse_tree)
 
-with open("rf_grid.pickle", "wb") as f:
-    pl.dump(rf_grid, f)
+#linear regression
+Lr=LinearRegression()
+Lr.fit(X_train, y_train)
+Lr_pred= Lr.predict(X_test)
+mse = mean_squared_error(y_test, Lr_pred)
+rmse = np.sqrt(mse)
+print("RMSE:", rmse)
+
+with open("Lr.pickle", "wb") as f:
+    pl.dump(Lr, f)
