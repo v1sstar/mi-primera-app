@@ -33,5 +33,5 @@ rmse = np.sqrt(mean_squared_error(y_test, preds))
 print("RMSE:", rmse)
 
 
-with open("gs_xgb.pickle", "wb") as f:
-    pl.dump(gs_xgb, f)
+with open("preds.pickle", "wb") as f:
+    pl.dump(preds, f)
