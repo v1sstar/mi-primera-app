@@ -18,7 +18,6 @@ model.info()
 X = model[["lotsize", "assess","bdrms","colonial","sqrft"]]
 y=model["price"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
 #XGBoost
 param_grid = {"eta":[1],
               "max_depth":[3,4,5,6,7,8,9],
