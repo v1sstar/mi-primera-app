@@ -25,19 +25,9 @@ valores=np.array([[lotsize,assess,colonial_binary,sqrft,bdrms]])
 p=Lr.predict([[lotsize,assess,colonial_binary,sqrft,bdrms]])
 st.write(st.write("El valor del inmueble es " + str(p)))
 
-# Graficar la predicción actual y anterior
-if 'prediccion_anterior' not in st.session_state:
-    st.session_state.prediccion_anterior = 0
-
-prediccion_actual = p[0]
-prediccion_anterior = st.session_state.prediccion_anterior
-
-# Crear el gráfico de barras
-fig, ax = plt.subplots()
-ax.bar(['Predicción anterior', 'Predicción actual'], [prediccion_anterior, prediccion_actual], color=['blue', 'orange'])
-ax.set_ylabel('Valor del inmueble')
-ax.set_title('Comparación de predicciones')
-st.pyplot(fig)
-
-# Actualizar el valor de la predicción anterior
-st.session_state.prediccion_anterior = prediccion_actual
+# Crear un mapa de calor de las correlaciones
+st.subheader("Mapa de calor de correlaciones entre variables")
+correlation_matrix = data.corr()
+sns.set(style="white")
+fig = sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
+st.pyplot(fig.figure)
