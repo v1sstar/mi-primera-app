@@ -20,12 +20,12 @@ print("colonial_binary:", colonial)
 print("sqrft:", sqrft)
 print("bdrms:", bdrms)
 
-colonial_binary = 1 if colonial == "Sí" else 0
-valores=np.array([[lotsize,assess,colonial_binary,sqrft,bdrms]])
-p=Lr.predict([[lotsize,assess,colonial_binary,sqrft,bdrms]])
-st.write(st.write("El valor del inmueble es " + str(p)))
-
 st.subheader("Mapa de calor de correlaciones entre variables")
 correlation_matrix = data.corr()
 sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
 st.pyplot()
+
+colonial_binary = 1 if colonial == "Sí" else 0
+valores=np.array([[lotsize,assess,colonial_binary,sqrft,bdrms]])
+p=Lr.predict([[lotsize,assess,colonial_binary,sqrft,bdrms]])
+st.write(st.write("El valor del inmueble es " + str(p)))
